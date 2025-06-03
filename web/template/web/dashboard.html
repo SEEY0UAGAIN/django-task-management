@@ -1,0 +1,24 @@
+{% extends 'web/base.html' %}
+{% block site_title %}แดชบอร์ด{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">เมนู</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="{% url 'manage_users' %}" class="list-group-item list-group-item-action">จัดการสมาชิก</a>
+                <a href="{% url 'manage_groups' %}" class="list-group-item list-group-item-action">จัดการกลุ่ม</a>
+                <a href="{% url 'manage_reservations' %}"
+                    class="list-group-item list-group-item-action">จัดการการจอง</a>
+                <a href="{% url 'manage_products' %}" class="list-group-item list-group-item-action">จัดการผลิตภัณฑ์</a>
+                <a href="{% url 'work_report' %}" class="list-group-item list-group-item-action">รายงานการทำงาน</a>
+                <a href="{% url 'reservation_report' %}" class="list-group-item list-group-item-action">รายงานการจอง</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            {% block dashboard_content %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

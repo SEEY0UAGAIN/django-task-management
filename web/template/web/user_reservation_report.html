@@ -1,0 +1,27 @@
+{% extends 'web/base.html' %}
+{% block site_title %}รายงานการจองของคุณ{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">รายงานการจองของคุณ</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ผลิตภัณฑ์</th>
+                    <th scope="col">วันที่จอง</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.product.name }}</td>
+                    <td>{{ reservation.reserved_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock content %}

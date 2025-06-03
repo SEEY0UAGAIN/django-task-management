@@ -1,0 +1,31 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2 class="mb-4">รายงานการทำงาน</h2>
+
+<!-- Form สำหรับกรองผู้ใช้ -->
+<form method="get" class="mb-4">
+    {{ form.as_p }}
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ผู้ใช้</th>
+            <th scope="col">งาน</th>
+            <th scope="col">วันที่คลิก</th>
+            <th scope="col">สถานะ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for click_history in click_histories %}
+        <tr>
+            <td>{{ click_history.user.first_name }} {{ click_history.user.last_name }}</td>
+            <td>{{ click_history.task.name }}</td>
+            <td>{{ click_history.clicked_date }}</td>
+            <td>{{ click_history.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock dashboard_content %}

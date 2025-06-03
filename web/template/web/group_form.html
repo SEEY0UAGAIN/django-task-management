@@ -1,0 +1,81 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block site_title %}ฟอร์มกลุ่ม{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">{% if form.instance.pk %}แก้ไข{% else %}สร้าง{% endif %} กลุ่ม</h1>
+    <hr>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            <div class="invalid-feedback">
+                กรุณาระบุชื่อกลุ่มที่ถูกต้อง
+            </div>
+        </div>
+        <button type="submit" name="save_group" class="btn btn-primary">บันทึก</button>
+    </form>
+
+    {% if form.instance.pk %}
+    <h2 class="mt-4">เพิ่มสมาชิก</h2>
+    <hr>
+    <form method="post" action="{% url 'group_update' group.pk %}" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ member_form.user.label_tag }}
+            {{ member_form.user }}
+            {{ member_form.group }}
+            <div class="invalid-feedback">
+                กรุณาเพิ่มสมาชิกที่ถูกต้อง
+            </div>
+        </div>
+        <button type="submit" name="add_member" class="btn btn-primary">เพิ่มสมาชิก</button>
+    </form>
+    <h2 class="mt-4">สมาชิก</h2>
+    <hr>
+    <ul class="list-group">
+        {% for member in members %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ member.user.first_name }} {{ member.user.last_name }}
+            {% if group.leader == member.user %}
+            <span class="badge bg-success">หัวหน้ากลุ่ม</span>
+            {% elif not group.leader %}
+            <form method="post" action="{% url 'make_leader' group.pk member.pk %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-sm">เพิ่มหัวหน้ากลุ่ม</button>
+            </form>
+            {% endif %}
+            <form method="post" action="{% url 'remove_member' group.pk member.pk %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<script>
+    // JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+{% endblock content %}

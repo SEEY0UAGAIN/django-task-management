@@ -1,0 +1,41 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2>จัดการกลุ่ม</h2>
+<a href="{% url 'group_add' %}" class="btn btn-primary mb-3">เพิ่มกลุ่ม</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ชื่อกลุ่ม</th>
+            <th scope="col">หัวหน้ากลุ่ม</th>
+            <th scope="col">การกระทำ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups %}
+        <tr>
+            <td>{{ group.name }}</td>
+            <td>{{ group.leader.first_name }} {{ group.leader.last_name }}</td>
+            <td>
+                <a href="{% url 'group_update' group.id %}" class="btn btn-warning btn-sm">แก้ไข</a>
+                <form method="post" action="{% url 'group_delete' group.pk %}" style="display:inline;"
+                    onsubmit="return confirmDelete(this);">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(form) {
+        if (confirm("คุณแน่ใจหรือว่าต้องการลบกลุ่มนี้?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+{% endblock dashboard_content %}

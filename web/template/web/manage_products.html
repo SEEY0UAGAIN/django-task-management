@@ -1,0 +1,39 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2>จัดการผลิตภัณฑ์</h2>
+<a href="{% url 'add_product' %}" class="btn btn-primary mb-3">เพิ่มผลิตภัณฑ์</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ชื่อผลิตภัณฑ์</th>
+            <th scope="col">ราคา</th>
+            <th scope="col">การกระทำ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <form method="post" action="{% url 'product_delete' product.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(form) {
+        if (confirm("คุณแน่ใจหรือว่าต้องการลบอุปกรณ์นี้?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+{% endblock dashboard_content %}

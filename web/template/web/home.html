@@ -1,0 +1,34 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="card-title">ข้อมูลผู้ใช้</h1>
+          <hr>
+          <div class="text-center">
+            {% if user_profile.profile_image %}
+            <img src="{{ user_profile.profile_image.url }}" class="rounded-circle" alt="User Image"
+              style="width: 150px; height: 150px;">
+            {% else %}
+            <img src="{% static 'images/user.jpg' %}" class="rounded-circle" alt="User Image"
+              style="width: 150px; height: 150px;">
+            {% endif %}
+          </div>
+          <div class="mt-4 text-left"> <!-- เปลี่ยนตรงนี้เป็น text-left -->
+            <p><strong>ชื่อ:</strong> {{ user.first_name }}</p>
+            <p><strong>นามสกุล:</strong> {{ user.last_name }}</p>
+            <p><strong>ที่อยู่:</strong> {{ user_profile.address }}</p>
+            <p><strong>เบอร์โทรศัพท์:</strong> {{ user_profile.phone }}</p>
+          </div>
+          <div class="text-center mt-4">
+            <a href="{% url 'EditProfile' %}" class="btn btn-primary">แก้ไขข้อมูล</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

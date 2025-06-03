@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- กำหนดการเข้ารหัสตัวละคร -->
+    <meta charset="utf-8">
+
+    <!-- กำหนดโหมดความเข้ากันได้สำหรับ Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- กำหนดชื่อของหน้า -->
+    <title>admin</title>
+
+    <!-- กำหนดผู้เขียนของหน้า -->
+    <meta name="author" content="reg.rmutl.ac.th">
+
+    <!-- กำหนดคำอธิบายของหน้า -->
+    <meta name="description" content="Regis2015 System - ระบบทะเบียนกลาง มทร.ล้านนา">
+
+    <!-- กำหนดการเรียกดูสำหรับการออกแบบเว็บไซต์ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- กำหนดไอคอนสัมผัส Apple -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="https://regis.rmutl.ac.th/student/assets/image/touch/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="https://regis.rmutl.ac.th/student/assets/image/touch/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="https://regis.rmutl.ac.th/student/assets/image/touch/apple-touch-icon-72.png">
+    <link rel="apple-touch-icon-precomposed"
+        href="https://regis.rmutl.ac.th/student/assets/image/touch/apple-touch-icon-57.png">
+
+    <!-- กำหนดไอคอนรวดเดียว -->
+    <link rel="shortcut icon" href="https://regis.rmutl.ac.th/student/assets/image/favicon.png">
+
+    <!-- เรียกใช้งาน CSS ของ DataTables -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/plugins/datatables/css/datatables.css"
+        type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ DateTimePicker -->
+    <link rel="stylesheet"
+        href="https://regis.rmutl.ac.th/student/assets/plugins/datetimepicker/css/jquery.datetimepicker.css"
+        type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ jQuery UI -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/jquery-ui.min.css" type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ Bootstrap -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/bootstrap.css" type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ layout -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/layout.css?code=randomnumber"
+        type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ขององค์ประกอบ UI -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/uielement.css" type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ theme1 -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/themes/theme1.css" type="text/css" />
+
+    <!-- เรียกใช้งานไลบรารี Modernizr -->
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/modernizr/js/modernizr.js"></script>
+
+    <!-- เรียกใช้งาน vendor.js -->
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/vendor.js"></script>
+
+    <!-- เรียกใช้งาน core.js -->
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/core.js"></script>
+
+    <!-- เรียกใช้งาน backend app.js -->
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/backend/app.js"></script>
+
+    <!-- เรียกใช้งาน JavaScript ของ DataTables -->
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/datatables/js/dataTables.bootstrap.js"></script>
+
+    <!-- เรียกใช้งาน JavaScript ของ Parsley -->
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/parsley/js/parsley.min.js"></script>
+
+    <!-- เรียกใช้งาน JavaScript ของ DateTimePicker -->
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/datetimepicker/js/jquery.datetimepicker.js"></script>
+
+    <!-- เรียกใช้งาน CSS ของ Toastr สำหรับการแจ้งเตือน -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/toastr.min.css" type="text/css" />
+
+    <!-- เรียกใช้งาน JavaScript ของ Toastr สำหรับการแจ้งเตือน -->
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/toastr.min.js"></script>
+
+    <!-- เรียกใช้งาน CSS ของ Bootstrap Stepper -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/bs-stepper.min.css" type="text/css" />
+
+    <!-- เรียกใช้งาน JavaScript ของ Bootstrap Stepper -->
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/bs-stepper.min.js"></script>
+
+    <!-- เรียกใช้งาน CSS ของ Font Awesome -->
+    <link rel="stylesheet" href="https://regis.rmutl.ac.th/student/assets/css/font-awesome.min.css" type="text/css" />
+
+    <!-- เรียกใช้งาน CSS ของ Fancybox -->
+    <link type="text/css" rel="stylesheet"
+        href="https://regis.rmutl.ac.th/student/assets/plugins/fancybox/dist/jquery.fancybox.css" />
+
+    <!-- เรียกใช้งาน JavaScript ของ Fancybox -->
+    <script type="text/javascript"
+        src="https://regis.rmutl.ac.th/student/assets/plugins/fancybox/dist/jquery.fancybox.js"></script>
+</head>
+
+<body>
+
+    <header id="header" class="navbar my-header-style">
+        <!-- เริ่มต้นส่วนของ Header -->
+        <div class="navbar-header">
+            <!-- ส่วนของโลโก้และข้อความ -->
+            <a class="navbar-brand" href="javascript:void(0);">
+                <span class=""></span> <!-- ไอคอนโลโก้ -->
+                <span class=""></span> <!-- ข้อความโลโก้ -->
+            </a>
+        </div>
+        <!-- ส่วนของเครื่องมือ Navbar -->
+        <div class="navbar-toolbar clearfix">
+            <!-- เมนูทางด้านซ้าย -->
+            <ul class="nav navbar-nav navbar-left">
+                <!-- ปุ่มสำหรับย่อ Sidebar (สำหรับหน้าจอขนาดเล็ก) -->
+                <li class="hidden-xs hidden-sm">
+                    <a href="javascript:void(0);" class="sidebar-minimize" data-toggle="minimize"
+                        title="Minimize sidebar">
+                        <span class="meta">
+                            <span class=""><i class="fa fa-bars" style="font-size: 16px;"></i></span>
+                        </span>
+                    </a>
+                </li>
+                <!-- เมนูหลัก (สำหรับหน้าจอขนาดเล็ก) -->
+                <li class="navbar-main hidden-lg hidden-md hidden-sm">
+                    <a href="javascript:void(0);" data-toggle="sidebar" data-direction="ltr" rel="tooltip"
+                        title="Menu sidebar">
+                        <span class="meta">
+                            <span class="icon"><i class="ico-paragraph-justify3"></i></span> <!-- ไอคอนเมนู -->
+                        </span>
+                    </a>
+                </li>
+                <!-- ข้อความหัวข้อหน้าเว็บ -->
+                <li>
+                    <a href="javascript:void(0);">
+                        <span class="meta hidden-xs hidden-sm hidden-md">
+                            <span class="text" style="font-size: 15px;">ระบบจัดการข้อมูลตลาดกลางทุ่ง</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <!-- เมนูทางด้านขวา -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- เมนูโปรไฟล์ผู้ใช้ -->
+                <li class="dropdown profile">
+                    <a href="javascript:void(0);" class="dropdown-toggle dropdown-hover" data-toggle="dropdown">
+                        <span class="meta">
+                            <span class="avatar"><img
+                                    src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ficones.pro%2Fen%2Fimage-icon-png-symbol-black%2F&psig=AOvVaw1xvTAGU2WpQy3cYhXjAidc&ust=1710936474185000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCMC12ZilgIUDFQAAAAAdAAAAABAF"
+                                    class="img-circle" alt="img profile" /></span>
+                            <!-- ชื่อผู้ใช้ -->
+                            <span class="text hidden-xs hidden-sm pl5">ชื่อแอดมิน</span>
+                            <span class="caret"></span>
+                        </span>
+                    </a>
+                    <!-- เมนูแบบ Dropdown สำหรับโปรไฟล์ผู้ใช้ -->
+                    <ul class="dropdown-menu" role="menu">
+                        <!-- เรียกดูประวัติส่วนตัว -->
+                        <li><a href=""><span class="icon"><i class="ico-user2"></i></span> หน้าแรก</a></li>
+                        <li class="divider"></li> <!-- เส้นแบ่ง -->
+                        <!-- ออกจากระบบ -->
+                        <li><a href="https://regis.rmutl.ac.th/student/login/dologout"><span class="icon"><i
+                                        class="ico-exit"></i></span> ออกจากระบบ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <aside class="sidebar sidebar-left sidebar-menu">
+        <section class="content slimscroll">
+            <h5 class="heading"><i class=""></i>&nbsp;ADMIN</h5>
+
+            <ul class="topmenu topmenu-responsive" data-toggle="menu">
+                <li class="active">
+                    <a href="{% url 'HomePage' %}">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">หน้าแรก</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'HomememPage' %}">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">สมาชิก</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="การจอง">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">การจอง</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="ติดตามการทำงาน">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">ติดตามการทำงาน</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="กำหนดสิทธิ์ผู้ใช้">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">กำหนดสิทธิ์ผู้ใช้</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="รายงานการจอง">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">รายงานการจอง</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="รายงานติดตามการทำงาน">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">รายงานติดตามการทำงาน</span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top"
+                        data-original-title="สถานะการรายงานตัวเป็นนักศึกษา">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">รายงานการทำงาน</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="ประวัติการขอรายงาน">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">ประวัติการขอรายงาน</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="" data-toggle="tooltip" data-placement="top" data-original-title="ประวัติการขอรายงาน">
+                        <span class="figure"><i class=""></i></span>
+                        <span class="text">รายงานการแจ้งปัญหา</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <section id="main">
+        <div class="container-fluid">
+            <div class="page-header page-header-block">
+                <div class="page-header-section">
+                    <h4 class="title">หน้าแรกก</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading" style="border-radius: 10px;">
+                            <h3 class="panel-title"><i class=""></i> หน้าแรก </h3>
+                        </div>
+                        <div class="panel-body row" style="border-radius: 10px;"> <!-- เพิ่ม CSS เพื่อกำหนดขอบ -->
+                            <div class="col-md-12">
+                                <div class="col-ms-8 text-right">
+                                    <br>
+                                    <center>
+                                        {% block content %}
+                                        {% endblock %}
+                                    </center>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <style>
+        #header {
+            background-color: #000000;
+            /* สีพื้นหลังของ Header */
+        }
+
+        .my-header-style {
+            background-color: #f1f1f1;
+            /* กำหนดสีพื้นหลังเป็นเขียว */
+            color: white;
+            /* กำหนดสีข้อความเป็นขาว */
+        }
+
+        .navbar-brand .text {
+            color: #ffffff;
+            /* สีข้อความโลโก้ใน Header */
+        }
+
+        /* CSS สำหรับ Navbar Toolbar */
+        .navbar-toolbar {
+            background-color: #d6eede;
+            /* สีพื้นหลังของ Navbar Toolbar */
+        }
+
+        .navbar-toolbar .text {
+            color: #ffffff;
+            /* สีข้อความใน Navbar Toolbar */
+        }
+
+        /* CSS สำหรับ Navbar Right */
+        .navbar-right .profile .text {
+            color: #ffffff;
+            /* สีข้อความของชื่อผู้ใช้ใน Navbar Right */
+        }
+
+        /* CSS สำหรับ Sidebar */
+        .sidebar {
+            background-color: #e9edf1;
+            /* สีพื้นหลังของ Sidebar */
+        }
+
+        .sidebar .heading {
+            color: #ffffff;
+            /* สีข้อความของหัวข้อใน Sidebar */
+        }
+
+        /* CSS สำหรับแท็บของเนื้อหาหลัก */
+        #main .panel-heading {
+            background-color: rgba(6, 156, 84, .5);
+            /* สีพื้นหลังของหัวข้อแต่ละแท็บ */
+        }
+
+        #main .panel-title {
+            color: #ffffff;
+            /* สีข้อความของหัวข้อแต่ละแท็บ */
+        }
+
+        /* CSS สำหรับ Panel Body */
+        .panel-body {
+            background-color: #ecf0f1;
+            /* สีพื้นหลังของ Panel Body */
+            border-radius: 10px;
+            /* ขอบมนของ Panel Body */
+            padding: 15px;
+            /* การเพิ่มระยะขอบภายในของ Panel Body */
+        }
+
+        /* CSS สำหรับทุกอันให้มีขอบมน */
+        .panel {
+            border-radius: 10px;
+            /* ขอบมนของ Panel */
+        }
+
+        /* CSS สำหรับปุ่มและไอคอน */
+        .btn {
+            border-radius: 5px;
+            /* ขอบมนของปุ่ม */
+        }
+
+        /* CSS สำหรับลิงก์ */
+        a {
+            color: #3498db;
+            /* สีของลิงก์ */
+        }
+
+        a:hover {
+            color: #2980b9;
+            /* สีของลิงก์เมื่อโฮเวอร์ */
+        }
+    </style>
+
+    <script>
+        function changePassword() {
+            var a = service_base_url + "s00profile/modalchangepassword";
+            $.ajax({
+                url: a, success: function (a) {
+                    $("#for_modal_change_password").html(a), $("#modal_change_password").modal("show", { backdrop: "true" })
+                }
+            })
+        }
+        function increaseStdData() {
+            $("#data_panel").html(""), ajaxInnerPanel("s00profile_model/ajax_s00stddata", "data_panel")
+        }
+        function increaseStdProfile() {
+            $("#profile_panel").html(""), ajaxInnerPanel("s00profile_model/ajax_s00stdprofile", "profile_panel")
+        }
+        function increaseStdParent() {
+            $("#parent_panel").html(""), ajaxInnerPanel("s00profile_model/ajax_s00stdparent", "parent_panel")
+        }
+        function increaseStdEducation() {
+            $("#education_panel").html(""), ajaxInnerPanel("s00profile_model/ajax_s00stdedu", "education_panel")
+        }
+        function ajaxInnerPanel(a, e) {
+            var n = a.split("/"), r = {};
+            $(n).each(function (a) {
+                r["param" + parseInt(a + 1)] = n[a]
+            }), url = service_base_url + "ajax/innerStudent", $.ajax({
+                url: url, method: "POST", data: r, success: function (a) {
+                    $("#" + e).html(a)
+                }
+            })
+        }
+        function refresh_profile(a) {
+            var e;
+            e = "education" === a ? "s00profile_model/ajax_s00stdedu" : "s00profile_model/ajax_s00std" + a, $("#" + a + "_panel").html(""), ajaxInnerPanel(e, a + "_panel"), $("#" + a + "_btn").trigger("click")
+        }
+        var service_base_url = $("#service_base_url").val();
+        $(function () {
+            increaseStdProfile(), increaseStdParent(), increaseStdEducation()
+        });
+    </script>
+    <input type="hidden" id="service_base_url" value="https://regis.rmutl.ac.th/student/" />
+    <script type="text/javascript" src="https://regis.rmutl.ac.th/student/assets/js/student/studentservice.js"></script>
+    <div class="modal fade" id="modal_ajax">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_ajax_lg">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G4PBHHJMCG"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G4PBHHJMCG');
+</script>
+
+</html>

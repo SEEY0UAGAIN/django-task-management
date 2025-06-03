@@ -1,0 +1,28 @@
+{% extends 'web/base_lr.html' %}
+{% block site_title %}เข้าสู่ระบบ{% endblock %}
+{% block content %}
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row justify-content-center">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <div class="col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username">อีเมลล์:</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">รหัสผ่าน:</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

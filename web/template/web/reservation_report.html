@@ -1,0 +1,28 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2 class="mb-4">รายงานการจอง</h2>
+
+<form method="get" class="mb-4">
+    {{ form.as_p }}
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ผู้ใช้</th>
+            <th scope="col">ผลิตภัณฑ์</th>
+            <th scope="col">วันที่จอง</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{ reservation.user.first_name }} {{ reservation.user.last_name }}</td>
+            <td>{{ reservation.product.name }}</td>
+            <td>{{ reservation.reserved_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock dashboard_content %}

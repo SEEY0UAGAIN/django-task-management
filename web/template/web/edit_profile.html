@@ -1,0 +1,57 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center">แก้ไขข้อมูลผู้ใช้</h1>
+                    <hr>
+                    <form method="POST" action="{% url 'EditProfile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="address" class="form-label">ที่อยู่:</label>
+                            <textarea class="form-control" id="address" name="address"
+                                rows="3">{{ user_profile.address }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">เบอร์โทรศัพท์:</label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                value="{{ user_profile.phone }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile_image" class="form-label">อัปโหลดรูปภาพ:</label>
+                            <input type="file" class="form-control" id="profile_image" name="profile_image">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">บันทึก</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-group {
+        margin-bottom: 0.2rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-align: left;
+    }
+
+    textarea,
+    input[type="tel"],
+    input[type="file"] {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        box-sizing: border-box;
+    }
+</style>
+
+{% endblock content %}

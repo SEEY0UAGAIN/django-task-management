@@ -1,0 +1,27 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block site_title %}หน้าสมาชิก{% endblock %}
+{% block content %}
+<div class="container mt-4">
+
+    <h1 class="mb-4">สมาชิก</h1>
+    <hr>
+
+    <h2 class="mt-4">กลุ่มที่คุณเข้าร่วม</h2>
+    <ul class="list-group">
+        {% for group in groups %}
+        <li class="list-group-item">
+            <h5>{{ group.name }}</h5>
+            <ul class="list-group mt-2">
+                {% for member in group.group_memberships.all %}
+                <li class="list-group-item">
+                    <a href="{% url 'member_detail' member.user.id %}">{{ member.user.first_name }}
+                        {{ member.user.last_name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}

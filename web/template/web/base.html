@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <title>{% block stie_title %}{% endblock %}</title>
+
+    <style>
+        /* เพิ่ม CSS สำหรับ header */
+        header {
+            background-color: #8cfc95e8;
+            /* สีพื้นหลังของ header */
+            padding: 10px 0;
+        }
+
+        .nav__logo {
+            color: white;
+            /* สีของโลโก้ */
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav__link {
+            color: white;
+            /* สีของลิงก์ใน navigation */
+            font-size: 18px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--container-color);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            min-width: 160px;
+            left: 0;
+            top: calc(100% + 10px);
+            border-radius: 0.5rem;
+            transition: opacity 0.3s, visibility 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            top: 24px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--========== SCROLL TOP ==========-->
+    <a href="#" class="scrolltop" id="scroll-top">
+        <i class='bx bx-chevron-up scrolltop__icon'></i>
+    </a>
+
+    <!--========== HEADER ==========-->
+
+
+    <header class="header" id="">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">ระบบจัดการข้อมูลตลุกกลางทุ่ง</a>
+
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="{% url 'HomePage' %}" class="nav__link">หน้าแรก</a>
+                    </li>
+                    <div class="nav__item">
+                        <a href="#" class="nav__link">สมาชิก</a>
+                        <div class="dropdown-content" id="members-dropdown">
+                            <a href="{% url 'HomememPage' %}">ดูรายชื่อสมาชิก</a>
+                            <a href="{% url 'group_list' %}">เพิ่มสมาชิก</a>
+                        </div>
+                    </div>
+
+                    <div class="nav__item">
+                        <a href="#" class="nav__link">จอง</a>
+                        <div class="dropdown-content" id="reservation-dropdown">
+                            <a href="{% url 'Reserve' %}">จองอุปกรณ์</a>
+                            <a href="{% url 'add_product' %}">เพิ่มอุปกรณ์</a>
+                            <a href="{% url 'user_products' %}">ลบอุปกรณ์</a>
+                            <a href="{% url 'reservation_list' %}">รายการจองทั้งหมด</a>
+                            <a href="{% url 'user_reservations' %}">ดูรายการจอง</a>
+                            <a href="{% url 'user_reservation_report' %}">รายงานการจอง</a>
+                        </div>
+                    </div>
+
+                    <div class="nav__item">
+                        <a href="#" class="nav__link">ติดตามการทำงาน</a>
+                        <div class="dropdown-content" id="tasking-dropdown">
+                            <a href="{% url 'tasking_list' %}">การทำงาน</a>
+                            <a href="{% url 'user_work_report' %}">รายงานการทำงาน</a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+    <!--========== HOME ==========-->
+    {% block content %}
+    {% csrf_token %}
+    {% endblock %}
+
+    <!--========== SCROLL REVEAL ==========-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--========== MAIN JS ==========-->=
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+        integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
+        data-cf-beacon='{"rayId":"85c8b8deefe037db","r":1,"version":"2024.2.1","token":"ebb08103de9142f2a31fad4575cace74"}'
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+</body>
+
+
+</html>

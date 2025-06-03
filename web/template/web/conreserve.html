@@ -1,0 +1,76 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block site_title %}จองอุปกรณ์{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <h2>{{ selected_product.name }}</h2>
+            <p><strong>ราคา:</strong> {{ selected_product.price }}</p>
+            <p><strong>รายละเอียด:</strong> {{ selected_product.description }}</p>
+            <p><strong>รูปภาพ:</strong> <img src="{{ selected_product.image.url }}" alt="{{ selected_product.name }}"
+                    style="max-width: 200px;"></p>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <form method="post" class="w-100">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="datepicker">วันที่จอง:</label>
+                    {{ form.reserved_date }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">จอง</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding-top: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .btn-primary {
+        margin-top: 20px;
+    }
+</style>
+<!-- โหลด CSS ของ Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- โหลด JavaScript ของ Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<!-- โหลดภาษาไทย -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/th.js"></script>
+
+<script>
+
+    // แปลงวันที่ที่ถูกจองเป็นรูปแบบที่สามารถใช้กับ Flatpickr ได้
+    var reservedDates = JSON.parse('{{ reserved_dates_json|escapejs }}');
+    var disabledDates = reservedDates.map(function (dateStr) {
+        return new Date(dateStr);
+    });
+
+    flatpickr("#datepicker", {
+        locale: 'th', // ตั้งค่าให้ใช้ภาษาไทย
+        dateFormat: "Y-m-d", // รูปแบบของวันที่
+        altInput: true, // แสดงวันที่ในรูปแบบอื่นในช่องอินพุต
+        altFormat: "F j, Y", // รูปแบบการแสดงวันที่ในช่องอินพุต
+        minDate: "today", // วันที่น้อยที่สุดที่เลือกได้คือวันนี้
+        disable: disabledDates, // ปิดการใช้งานวันที่ที่ถูกจองแล้ว
+        onDayCreate: function (dObj, dStr, fp, dayElem) {
+            // เปลี่ยนสีของวันที่ที่ถูกจองแล้ว
+            if (disabledDates.some(d => d.toDateString() === dayElem.dateObj.toDateString())) {
+                dayElem.style.backgroundColor = 'red';
+                dayElem.style.color = 'white';
+            }
+        }
+    });
+
+</script>
+{% endblock content %}

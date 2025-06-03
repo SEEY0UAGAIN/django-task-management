@@ -1,0 +1,9 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2>{{ form.instance.pk|yesno:"แก้ไข,เพิ่ม" }} สมาชิก</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">บันทึก</button>
+</form>
+{% endblock dashboard_content %}

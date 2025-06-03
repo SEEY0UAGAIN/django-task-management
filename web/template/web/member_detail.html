@@ -1,0 +1,19 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block site_title %}รายละเอียดสมาชิก{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">รายละเอียดของ {{ member.first_name }} {{ member.last_name }}</h1>
+    <h2>ประวัติการคลิก</h2>
+    <ul class="list-group">
+        {% for history in click_history %}
+        <li class="list-group-item">
+            งาน: {{ history.task.name }}<br>
+            วันที่คลิก: {{ history.clicked_date }}<br>
+            สถานะ: {{ history.get_status_display }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'HomememPage' %}" class="btn btn-primary mt-4">กลับไปหน้ากลุ่ม</a>
+</div>
+{% endblock content %}

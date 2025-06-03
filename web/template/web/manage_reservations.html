@@ -1,0 +1,40 @@
+{% extends 'web/dashboard.html' %}
+{% block dashboard_content %}
+<h2>จัดการการจอง</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ผู้ใช้</th>
+            <th scope="col">ผลิตภัณฑ์</th>
+            <th scope="col">วันที่จอง</th>
+            <th scope="col">การกระทำ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{ reservation.user.first_name }} {{ reservation.user.last_name }}</td>
+            <td>{{ reservation.product.name }}</td>
+            <td>{{ reservation.formatted_date }}</td>
+            <td>
+                <form method="post" action="{% url 'reservation_delete' reservation.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(form) {
+        if (confirm("คุณแน่ใจหรือว่าต้องการลบการจองนี้?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+{% endblock dashboard_content %}

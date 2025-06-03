@@ -1,0 +1,15 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block site_title %}Delete Group{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Are you sure you want to delete "{{ group.name }}"?</h1>
+    <form method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+    </form>
+    <a href="{% url 'group_list' %}" class="btn btn-secondary ml-2">Cancel</a>
+</div>
+
+{% endblock content %}

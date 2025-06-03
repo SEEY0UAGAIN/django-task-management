@@ -1,0 +1,121 @@
+{% extends 'web/base.html' %}
+{% block site_title %}ติดตามการทำงาน{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>ติดตามการทำงาน</h1>
+    <hr>
+</div>
+{% for task in tasks %}
+<center>
+    <div class="container1">
+        <div class="task">{{ task.name }}</div>
+        <div class="circle 
+            {% if task.completed %}completed{% endif %} 
+            {% if task.id in user_completed_tasks %}success{% endif %} 
+            {% if task.proceed %}proceed{% endif %}" id="circle_{{ task.id }}"></div>
+        <div class="btn-container">
+            {% if task.id not in user_completed_tasks %}
+            <a href="{% url 'proceed_task' task.id %}" class="btn btn-proceed"
+                data-task-id="{{ task.id }}">ดำเนินการ</a>
+            <a href="{% url 'success_task' task.id %}" class="btn btn-success"
+                data-task-id="{{ task.id }}">เสร็จสิ้น</a>
+            {% endif %}
+        </div>
+    </div>
+</center>
+{% endfor %}
+
+<style>
+    .container1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid lightgray;
+        border-radius: 10px;
+        padding: 10px;
+        max-width: 450px;
+    }
+
+    .circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        margin-right: 10px;
+        margin-top: 12px;
+    }
+
+    .task {
+        font-size: 16px;
+        margin: 0px;
+        flex-grow: 1;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-success {
+        background-color: limegreen;
+    }
+
+    .btn-proceed {
+        background-color: orange;
+    }
+
+    /* เพิ่มสีของวงกลมตามสถานะ */
+    .circle.proceed {
+        background-color: orange;
+    }
+
+    .circle.success {
+        background-color: limegreen;
+    }
+</style>
+
+<script>
+    // อัพเดทสถานะของงานและแสดงในวงกลม
+    function updateTaskStatus(taskId, status) {
+        var taskCircle = document.querySelector(`#circle_${taskId}`);
+        if (status === 'proceed') {
+            taskCircle.style.backgroundColor = 'orange';
+        } else if (status === 'success') {
+            taskCircle.style.backgroundColor = 'limegreen';
+        }
+    }
+
+    // เมื่อคลิกที่ปุ่ม Proceed
+    document.querySelectorAll('.btn-proceed').forEach(btn => {
+        btn.addEventListener('click', function (event) {
+            var taskId = this.getAttribute('data-task-id');
+            updateTaskStatus(taskId, 'proceed');
+            event.preventDefault(); // หยุดการทำงานของปุ่ม
+            this.style.display = 'none'; // ซ่อนปุ่ม Proceed หลังจากคลิก
+        });
+    });
+
+    // เมื่อคลิกที่ปุ่ม Success
+    document.querySelectorAll('.btn-success').forEach(btn => {
+        btn.addEventListener('click', function () {
+            var taskId = this.getAttribute('data-task-id');
+            updateTaskStatus(taskId, 'success');
+        });
+    });
+</script>
+
+{% endblock content %}
